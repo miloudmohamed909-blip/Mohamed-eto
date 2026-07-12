@@ -1,0 +1,27 @@
+imprort streamlit as st
+import pandas as pd
+import random
+
+# Configuration
+agents = ["Agent 1", "Agent 2", "Agent 3", "Agent 4", "Agent 5", "Agent 6"]
+zones = ["Zone A: Entrée/Parking", "Zone B: Plateforme 1", "Zone C: Plateforme 2", 
+         "Zone D: Allées principales", "Zone E: Zones périphériques", "Zone F: Bâtiments/Stock"]
+jours = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"]
+
+# Génération d'une rotation simple (chaque agent change de zone chaque jour)
+data = {}
+for i, jour in enumerate(jours):
+    # Rotation des zones pour chaque jour
+    rotation = zones[i:] + zones[:i]
+    data[jour] = rotation
+
+# Création du DataFrame
+df = pd.DataFrame(data, index=agents)
+
+# Affichage du résultat
+print("--- Programme Hebdomadaire d'Hygiène (4 hectares) ---")
+print(df.to_string())
+
+# Optionnel : Exporter en CSV
+# df.to_csv("programme_hygiene.csv")
+
